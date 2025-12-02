@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  minifront:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./minifront:/usr/share/nginx/html
+
+  hypertube_database:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hypertube
+    ports:
+      - "5432:5432"
+    volumes:
+      - hypertube_data:/var/lib/postgresql/data
+
+volumes:
+  hypertube_data:
